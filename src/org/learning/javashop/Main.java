@@ -2,12 +2,12 @@ package org.learning.javashop;
 
 public class Main {
     public static void main(String[] args) {
-        Prodotto monitor = new Prodotto("samsung", "schermo", 200);
+        Prodotto monitor = new Prodotto("samsung", "schermo", "200");
 
 
         monitor.setName("LG");
         monitor.setDesc("monitor");
-        monitor.setPrice(100);
+        monitor.setPrice("100");
         monitor.setIva(25);
 
         System.out.println(monitor.getCode());

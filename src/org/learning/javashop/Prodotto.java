@@ -9,16 +9,16 @@ public class Prodotto {
     private int code;
     private String name;
     private String desc;
-    private double price;
+    private BigDecimal price;
     private int iva;
     Random rnd = new Random();
 
     // Costruttore
-    Prodotto(String name,String desc, double price){
+    Prodotto(String name,String desc, String price){
         code = rnd.nextInt(999999);
         this.name = name;
         this.desc = desc;
-        this.price = price;
+        this.price = new BigDecimal(price);
         iva = 22;
     }
 
@@ -27,10 +27,9 @@ public class Prodotto {
     public BigDecimal getFullPrice() {
         BigDecimal div = new BigDecimal(100);
         BigDecimal mul = new BigDecimal(iva);
-        BigDecimal pri = new BigDecimal(price);
 
-        BigDecimal price1 = new BigDecimal(price).divide(div, 2, RoundingMode.CEILING).multiply(mul).add(pri);
-        return price1;
+        BigDecimal fullPrice = price.divide(div, 2, RoundingMode.CEILING).multiply(mul).add(price);
+        return fullPrice;
 //        return price + ((price / 100) * iva);
     }
 
@@ -51,7 +50,7 @@ public class Prodotto {
         return desc;
     }
 
-    public double getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
@@ -68,8 +67,8 @@ public class Prodotto {
         this.desc = desc;
     }
 
-    public void setPrice(double price) {
-        this.price = price;
+    public void setPrice(String price) {
+        this.price = new BigDecimal(price);;
     }
 
     public void setIva(int iva) {
