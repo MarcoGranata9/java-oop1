@@ -1,5 +1,7 @@
 package org.learning.javashop;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.Random;
 
 public class Prodotto {
@@ -22,8 +24,14 @@ public class Prodotto {
 
     // Metodi
 
-    public double getFullPrice() {
-        return price + ((price / 100) * iva);
+    public BigDecimal getFullPrice() {
+        BigDecimal div = new BigDecimal(100);
+        BigDecimal mul = new BigDecimal(iva);
+        BigDecimal pri = new BigDecimal(price);
+
+        BigDecimal price1 = new BigDecimal(price).divide(div, 2, RoundingMode.CEILING).multiply(mul).add(pri);
+        return price1;
+//        return price + ((price / 100) * iva);
     }
 
     public String getFullName() {
